@@ -1,0 +1,4 @@
+../../SELENIUM/.idea
+htmlcov/*
+.coverage
+__pycache__
