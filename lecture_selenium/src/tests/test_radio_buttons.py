@@ -36,13 +36,8 @@ class TestRadioButton:
         assert status_button_no is True and (
                 status_button_yes is False and status_button_impressive is False), "Radio button NO is OFF"
 
-    #
-    # @pytest.mark.usefixtures('chrome')
-    # class TestListRadioButton:
     def test_get_radio_buttons_info(self):
         self.driver.get('https://demoqa.com/radio-button')
         radio_button_list = RadioButton(self.driver, name=None)
-        radio_button_list.list_of_buttons()
-        print(radio_button_list)
-        # for name, status in radio_button_status.items():
-        #     print(f"Кнопка '{name}': {status}")
+        radio_button_status = radio_button_list.get_radio_buttons_info()
+        print(radio_button_status)

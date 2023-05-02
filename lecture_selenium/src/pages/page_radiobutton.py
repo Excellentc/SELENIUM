@@ -27,7 +27,7 @@ class RadioButton:
     # class ListRadioButton:
     #     def __init__(self, driver: WebDriver):
     #         self.driver = driver
-    def list_of_buttons(self):
+    def get_radio_buttons_info(self):
         radio_button_elements = self.driver.find_elements(By.XPATH, '//div[contains(@class, "radio")]')
         radio_button_status = {}
 
