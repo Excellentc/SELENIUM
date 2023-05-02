@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 
 
-
 @pytest.mark.usefixtures('chrome')
 class TestTextCheckbox:
     _instance = None
@@ -26,25 +25,41 @@ class TestTextCheckbox:
         self.driver.get(self.URL)
         return self
 
-    def expand_folder(self, name):
-        home = self.driver.find_element(By.XPATH, f'//label[contains(@for, "tree-node-{name}")]//ancestor::span/button')
-        try:
-            expand = home.find_element(By.XPATH, '//*[contains(@class, "expand-open")]')
-            if expand.is_displayed():
-                expand.click()
-        except NoSuchElementException:
-            pass
-        home.click()
+    # def expand_folder(self, name):
+    #     home = self.driver.find_element(By.XPATH, f'//label[contains(@for, "tree-node-{name}")]//ancestor::span/button')
+    #     try:
+    #         expand = home.find_element(By.XPATH, '//*[contains(@class, "expand-open")]')
+    #         if expand.is_displayed():
+    #             expand.click()
+    #     except NoSuchElementException:
+    #         pass
+    #     home.click()
 
-    def expand_second_folder(self, name):
-        folder_button = self.driver.find_element(By.XPATH, f'//label[@for="tree-node-{name}"]/preceding-sibling::button')
+    def expand_folder(self, name, parent=None):
+
+        if parent is None:
+            parent_element = self.driver.find_element(By.XPATH,
+                                                      f'//label[contains(@for, "tree-node-{name}")]//ancestor::span/button')
+        else:
+            parent_element = self.driver.find_element(By.XPATH,
+                                                      f'//label[@for="tree-node-{name}"]/preceding-sibling::button')
         try:
-            expand = folder_button.find_element(By.XPATH, './/*[contains(@class, "expand-open")]')
+            expand = parent_element.find_element(By.XPATH, '//*[contains(@class, "expand-close")]')
             if expand.is_displayed():
-                expand.click()
+                parent_element.click()
         except NoSuchElementException:
             pass
-        folder_button.click()
+
+    # def expand_second_folder(self, name):
+    #     parent_element = self.driver.find_element(By.XPATH,
+    #                                              f'//label[@for="tree-node-{name}"]/preceding-sibling::button')
+    #     try:
+    #         expand = parent_element.find_element(By.XPATH, './/*[contains(@class, "expand-open")]')
+    #         if expand.is_displayed():
+    #             expand.click()
+    #     except NoSuchElementException:
+    #         pass
+    #     parent_element.click()
 
     def collapse_folder(self, name):
         home = self.driver.find_element(By.XPATH, f'//label[contains(@for, "tree-node-{name}")]//ancestor::span/button')

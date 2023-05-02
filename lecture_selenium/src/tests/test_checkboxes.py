@@ -12,6 +12,7 @@ class TestCheckbox:
 
     def test_checkbox_task_one(self):
         self.page.expand_folder('home')
-        self.page.expand_second_folder('documents')
+        self.page.expand_folder('documents', parent='home')
+        # self.page.expand_second_folder('documents')
         assert self.page.mark_folder('desktop')
         assert self.page.mark_folder('office')

@@ -8,7 +8,7 @@ from selenium import webdriver
 def chrome(request):
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
-    driver.set_page_load_timeout(30)
+    driver.set_page_load_timeout(20)
     if request.cls:
         request.cls.driver = driver
     yield driver
