@@ -13,6 +13,12 @@ class TestCheckbox:
     def test_checkbox_task_one(self):
         self.page.expand_folder('home')
         self.page.expand_folder('documents', parent='home')
-        # self.page.expand_second_folder('documents')
+        # self.page.expand_second_folder('documents')    ----------for two function , first  version
+        assert self.page.mark_folder('desktop')
+        assert self.page.mark_folder('office')
+
+    def test_checkbox_task_one_for_list(self):
+        checkbox_list = ['home', 'documents']
+        self.page.expand_folder_from_list(names=checkbox_list)
         assert self.page.mark_folder('desktop')
         assert self.page.mark_folder('office')
