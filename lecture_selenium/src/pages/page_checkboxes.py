@@ -71,19 +71,12 @@ class TestTextCheckbox:
                 pass
             parent = parent_element
 
+
 """ next three functions its a previoisly atempts for reolization Expand_folder function
     All worked. expand_folder + expand_second_folder and expand_folder_1"""
 
 
-    # def expand_folder(self, name):
-    #     home = self.driver.find_element(By.XPATH, f'//label[contains(@for, "tree-node-{name}")]//ancestor::span/button')
-    #     try:
-    #         expand = home.find_element(By.XPATH, '//*[contains(@class, "expand-open")]')
-    #         if expand.is_displayed():
-    #             expand.click()
-    #     except NoSuchElementException:
-    #         pass
-    #     home.click()
+
     #
     # def expand_folder_1(self, name, parent=None):
     #
@@ -110,3 +103,13 @@ class TestTextCheckbox:
     #     except NoSuchElementException:
     #         pass
     #     parent_element.click()
+
+# def expand_folder(self, name):
+#     home = self.driver.find_element(By.XPATH, f'//label[contains(@for, "tree-node-{name}")]//ancestor::span/button')
+#     try:
+#         expand = home.find_element(By.XPATH, '//*[contains(@class, "expand-open")]')
+#         if expand.is_displayed():
+#             expand.click()
+#     except NoSuchElementException:
+#         pass
+#     home.click()
