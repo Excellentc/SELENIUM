@@ -16,10 +16,6 @@ class TestTextCheckbox:
 
     def __init__(self, driver: WebDriver):
         self.driver: WebDriver = driver
-        self.folder_loc = '//label[contains(@for, "tree-node-{folder}")]'
-        self.folder_expand_button_loc = f'{self.folder_loc}//ancestor::span/button'
-        self.expand_status_loc = '//*[contains(@class, "expand-{}")]'
-        self.folder_checkbox_input_loc = f'{self.folder_loc}/input'
 
     def open(self):
         self.driver.get(self.URL)
@@ -34,6 +30,22 @@ class TestTextCheckbox:
         except NoSuchElementException:
             pass
         home.click()
+
+    def expand_folder_from_list(self, names, parent=None):
+        for name in names:
+            if parent is None:
+                parent_element = self.driver.find_element(
+                    By.XPATH, f'//label[contains(@for, "tree-node-{name}")]//ancestor::span/button')
+            else:
+                parent_element = parent.find_element(
+                    By.XPATH, f'//label[@for="tree-node-{name}"]/preceding-sibling::button')
+            try:
+                expand = parent_element.find_element(By.XPATH, '//*[contains(@class, "expand-close")]')
+                if expand.is_displayed():
+                    parent_element.click()
+            except NoSuchElementException:
+                pass
+            parent = parent_element
 
     def change_folder_selection_state(self, name, enabled=False):
         folder_loc = f'//label[contains(@for, "tree-node-{name}")]'
@@ -55,26 +67,9 @@ class TestTextCheckbox:
     def un_mark_folder(self, name):
         return self.change_folder_selection_state(name, enabled=False)
 
-    def expand_folder_from_list(self, names, parent=None):
-        for name in names:
-            if parent is None:
-                parent_element = self.driver.find_element(By.XPATH,
-                                                          f'//label[contains(@for, "tree-node-{name}")]//ancestor::span/button')
-            else:
-                parent_element = parent.find_element(By.XPATH,
-                                                     f'//label[@for="tree-node-{name}"]/preceding-sibling::button')
-            try:
-                expand = parent_element.find_element(By.XPATH, '//*[contains(@class, "expand-close")]')
-                if expand.is_displayed():
-                    parent_element.click()
-            except NoSuchElementException:
-                pass
-            parent = parent_element
-
 
 """ next three functions its a previoisly atempts for reolization Expand_folder function
     All worked. expand_folder + expand_second_folder and expand_folder_1"""
-
 
 # def expand_folder(self, name, parent=None):
 #     if parent is None:
