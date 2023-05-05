@@ -12,3 +12,4 @@ def chrome(request):
     if request.cls:
         request.cls.driver = driver
     yield driver
+ 
