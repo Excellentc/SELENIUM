@@ -1,6 +1,5 @@
 import pytest
 from lecture_selenium.src.pages.page_radiobutton import RadioButton
-# from lecture_selenium.src.pages.page_radiobutton import ListRadioButton
 
 
 @pytest.mark.usefixtures('chrome')
