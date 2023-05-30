@@ -14,6 +14,7 @@ class ApiPage:
     @staticmethod
     def post_new_user(add_user_url, user_data):
         response_add_user = requests.post(add_user_url, data=user_data)
-        with open('registration_new_user.json', 'w') as file:
+        with open('registration_new_user.json', 'a') as file:
             json.dump(response_add_user.json(), file, indent=4)
+            file.write('\n')
         return response_add_user
