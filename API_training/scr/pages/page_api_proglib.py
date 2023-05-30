@@ -1,10 +1,7 @@
 import json
-import pytest
 import requests
 
 
-
-# @pytest.mark.usefixtures('chrome')
 class ApiPage:
 
     @staticmethod
