@@ -1,7 +1,7 @@
 import json
 import pytest
 import requests
-from selenium.webdriver.remote.webdriver import WebDriver
+
 
 
 @pytest.mark.usefixtures('chrome')
