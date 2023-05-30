@@ -4,7 +4,7 @@ import requests
 
 
 
-@pytest.mark.usefixtures('chrome')
+# @pytest.mark.usefixtures('chrome')
 class ApiPage:
 
     @staticmethod
