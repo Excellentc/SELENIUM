@@ -7,9 +7,6 @@ from selenium.webdriver.remote.webdriver import WebDriver
 @pytest.mark.usefixtures('chrome')
 class ApiPage:
 
-    def __init__(self, driver: WebDriver):
-        self.driver = driver
-
     @staticmethod
     def get_api_users_list(list_of_users_url=None):
         response_users = requests.get(list_of_users_url)

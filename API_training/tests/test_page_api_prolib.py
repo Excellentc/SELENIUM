@@ -3,17 +3,16 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from API_training.scr.pages.page_api_proglib import ApiPage
 
 
-@pytest.mark.usefixtures('chrome')
 class TestApiPage:
     url_new_user = 'https://reqres.in/api/users'
     url_users = 'https://reqres.in/api/users?page=1'
 
     def setup_method(self):
-        self.driver: WebDriver = self.driver
-        self.page_api = ApiPage(self.driver)
+        self.page_api = ApiPage()
 
     def test_get_api_users_list(self):
         response_list_users = self.page_api.get_api_users_list(self.url_users)
+        print(response_list_users.status_code)
         assert response_list_users.status_code == 200
 
     @pytest.mark.parametrize('new_user', [
